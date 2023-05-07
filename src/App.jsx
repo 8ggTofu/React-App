@@ -1,4 +1,7 @@
+import { TVShowAPI } from "./api/tv-show";
 import s from "./style.module.css";
+
+TVShowAPI.fetchPopulars();
 export function App() {
   return (
     <div className={s.main_container}>
@@ -19,7 +22,7 @@ export function App() {
       <div className={s.tv_show_detail}>TV Show Detail</div>
 
       <div className={s.recommended_tv_shows}>Recommended TV Shows</div>
-      
+
     </div>
   );
 }
