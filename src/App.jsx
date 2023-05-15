@@ -6,6 +6,7 @@ import { TVShowDetail } from "./components/TVShowDetail/TVShowDetail";
 import logoImg from "./assets/images/logo.png";
 import { Logo } from "./components/Logo/Logo";
 import { TVShowListItem } from "./components/TVShowListItem/TVShowListItem";
+import { TVShowList } from "./components/TVShowList/TVShowList";
 
 export function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
@@ -70,28 +71,7 @@ export function App() {
         {currentTVShow && <TVShowDetail tvShow={currentTVShow} />}
       </div>
       <div className={s.recommended_tv_shows}>
-        {currentTVShow && (
-          <>
-            <TVShowListItem
-              tvShow={currentTVShow}
-              onClick={(tvShow) => {
-                console.log("I have been clicked", tvShow);
-              }}
-            />
-            <TVShowListItem
-              tvShow={currentTVShow}
-              onClick={(tvShow) => {
-                console.log("I have been clicked", tvShow);
-              }}
-            />
-            <TVShowListItem
-              tvShow={currentTVShow}
-              onClick={(tvShow) => {
-                console.log("I have been clicked", tvShow);
-              }}
-            />
-          </>
-        )}
+        {currentTVShow && <TVShowList tvShowList={recommendationList}/>}
       </div>
     </div>
   );
