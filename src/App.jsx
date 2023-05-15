@@ -14,25 +14,36 @@ export function App() {
   const [recommendationList, setRecommendationList] = useState([]);
 
   async function fetchPopulars() {
-    const popularTVShowList = await TVShowAPI.fetchPopulars();
-    if (popularTVShowList.length > 0) {
-      setCurrentTVShow(popularTVShowList[0]);
+    try {
+      const popularTVShowList = await TVShowAPI.fetchPopulars();
+      if (popularTVShowList.length > 0) {
+        setCurrentTVShow(popularTVShowList[0]);
+      }
+    } catch (error) {
+      alert("Something went wrong when fetching the popular TV shows")
     }
   }
-
   async function fetchRecommendations(tvShowId) {
-    const recommendationListResp = await TVShowAPI.fetchRecommendations(
-      tvShowId
-    );
-    if (recommendationListResp.length > 0) {
-      setRecommendationList(recommendationListResp.slice(0, 10));
+    try {
+      const recommendationListResp = await TVShowAPI.fetchRecommendations(
+        tvShowId
+      );
+      if (recommendationListResp.length > 0) {
+        setRecommendationList(recommendationListResp.slice(0, 10));
+      }
+    } catch (error) {
+      alert("Something went wrong when fetching the recommended TV shows")
     }
   }
 
   async function fetchByTitle(title) {
-    const searchResponse = await TVShowAPI.fetchByTitle(title);
-    if (searchResponse.length > 0) {
-      setCurrentTVShow(searchResponse[0]);
+    try {
+      const searchResponse = await TVShowAPI.fetchByTitle(title);
+      if (searchResponse.length > 0) {
+        setCurrentTVShow(searchResponse[0]);
+      }
+    } catch (error) {
+      alert("Something went wrong when fetching TV shows")
     }
   }
 
