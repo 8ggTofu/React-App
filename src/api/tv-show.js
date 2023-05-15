@@ -21,4 +21,12 @@ export class TVShowAPI {
         return response.data.results;
         // return FAKE_RECOMMENDATIONS;
     }
+
+    static async fetchByTitle(title) {
+        const response = await axios.get(
+            `${BASE_URL}search/tv?include_adult=false&language=en-US&page=1&api_key=${API_KEY_PARAM}&query=${title}`
+        );
+        return response.data.results;
+        // return FAKE_RECOMMENDATIONS;
+    }
 }
