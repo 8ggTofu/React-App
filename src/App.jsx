@@ -13,6 +13,7 @@ export function App() {
   const [currentTVShow, setCurrentTVShow] = useState();
   const [recommendationList, setRecommendationList] = useState([]);
 
+  // Fetch popular TV shows and set the current TV show
   async function fetchPopulars() {
     try {
       const popularTVShowList = await TVShowAPI.fetchPopulars();
@@ -23,6 +24,8 @@ export function App() {
       alert("Something went wrong when fetching the popular TV shows")
     }
   }
+
+  // Fetch recommended TV shows based on the current TV show
   async function fetchRecommendations(tvShowId) {
     try {
       const recommendationListResp = await TVShowAPI.fetchRecommendations(
@@ -36,6 +39,7 @@ export function App() {
     }
   }
 
+  // Fetch TV shows by title
   async function fetchByTitle(title) {
     try {
       const searchResponse = await TVShowAPI.fetchByTitle(title);
@@ -48,15 +52,19 @@ export function App() {
   }
 
   useEffect(() => {
+    // Fetch popular TV shows when the component mounts
+    // This useEffect hook is triggered only once upon component mounting
     fetchPopulars();
   }, []);
 
   useEffect(() => {
+    // Fetch recommendations when the current TV show changes
     if (currentTVShow) {
       fetchRecommendations(currentTVShow.id);
     }
   }, [currentTVShow]);
 
+  // Update the current TV show
   function updateCurrentTVShow(tvShow) {
     setCurrentTVShow(tvShow);
   }
